@@ -2,11 +2,12 @@
 from scapy.all import *
 
 # Arping interface
-IFACE = "eth0"
+IFACE = "wlan0"
 
 # Check button function
 def scan_arp(pkt):
-    print("[NEW ARP Result] From:\nIP: {0}\nMAC: {1}\n".format(pkt[ARP].psrc, pkt[ARP].hwsrc))
+    if pkt.haslayer(ARP):
+        print("[NEW ARP Result] From:\nIP: {0}\nMAC: {1}\n".format(pkt[ARP].psrc, pkt[ARP].hwsrc))
 
 # Start sniffing
 print("Start sniffing (CTRL+C stop)")
